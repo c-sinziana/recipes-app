@@ -11,7 +11,7 @@ export default function MyProfilePage() {
     method: "get",
   };
 
-  const { data: user, loading, error } = useFetchData(userRequest);
+  const [{ data: user, loading, error }, fetchData] = useFetchData(userRequest);
 
   return (
     <Box>

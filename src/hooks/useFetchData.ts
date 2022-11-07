@@ -54,7 +54,7 @@ const useFetchData = (requestConfig: AxiosRequestConfig): any => {
     }
   }, [requestConfig.url, JSON.stringify(requestConfig.data)]);
 
-  return { requestState, fetchData };
+  return [requestState, fetchData];
 };
 
 export default useFetchData;

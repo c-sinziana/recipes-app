@@ -3,9 +3,9 @@ import { AxiosRequestConfig } from "axios";
 import React from "react";
 import useFetchData from "../hooks/useFetchData";
 
-export default function CategoryProducts() {
+export default function WomensClothesCategory() {
   const productsRequest: AxiosRequestConfig = {
-    url: `/products/category/jewelery`,
+    url: `/products/category/women's clothing`,
     method: "get",
   };
 
@@ -15,7 +15,7 @@ export default function CategoryProducts() {
   return (
     <>
       <Typography variant="h5" sx={{ marginTop: "2%" }}>
-        Jewlery products
+        Women's clothing
       </Typography>
       <Grid
         container

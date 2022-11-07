@@ -13,8 +13,6 @@ import { useForm } from "react-hook-form";
 
 import { Link, useNavigate } from "react-router-dom";
 import { emailFieldRule, requiredFieldRule } from "../assets/Validations";
-import useFetchData from "../hooks/useFetchData";
-import { AxiosRequestConfig } from "axios";
 
 export default function LoginPage() {
   const navigate = useNavigate();

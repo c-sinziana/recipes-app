@@ -2,7 +2,7 @@ import { Box, Card, CardMedia, Grid, Typography } from "@mui/material";
 import { AxiosRequestConfig } from "axios";
 import React from "react";
 import useFetchData from "../hooks/useFetchData";
-import SingleProductPage from "./SingleProductPage";
+import SingleProductPage from "../product/SingleProductPage";
 
 export default function UsersPage() {
   const usersRequest: AxiosRequestConfig = {
@@ -10,7 +10,8 @@ export default function UsersPage() {
     method: "get",
   };
 
-  const { data: users, loading, error } = useFetchData(usersRequest);
+  const [{ data: users, loading, error }, fetchData] =
+    useFetchData(usersRequest);
 
   return (
     <Box>

@@ -10,6 +10,7 @@ import Stack from "@mui/material/Stack";
 import { AxiosRequestConfig } from "axios";
 import useFetchData from "../hooks/useFetchData";
 import { useNavigate } from "react-router-dom";
+import { Box } from "@mui/material";
 
 export default function AllCategoriesMenu() {
   const categoriesRequest: AxiosRequestConfig = {
@@ -55,6 +56,7 @@ export default function AllCategoriesMenu() {
   }, [open]);
 
   return (
+    <Box sx={{display: "flex", flexDirection: "coulm", justifyContent: "center"}}>
     <Stack>
       <div>
         <Button
@@ -87,20 +89,48 @@ export default function AllCategoriesMenu() {
                     id="composition-menu"
                     onKeyDown={handleListKeyDown}
                   >
-                    <MenuItem onClick={handleClose}>electornics</MenuItem>
+                    <Button
+                      variant="contained"
+                      color="error"
+                      sx={{ marginBottom: "3%" }}
+                      onClick={() => navigate("category/products/electronics")}
+                    >
+                      electornics
+                    </Button>
                     <MenuItem onClick={handleClose}>
-               
                       <Button
                         variant="contained"
                         color="error"
                         sx={{ marginBottom: "3%" }}
                         onClick={() => navigate("category/products")}
                       >
-                        jewlery{" "}
+                        jewlery
                       </Button>
                     </MenuItem>
-                    <MenuItem onClick={handleClose}>men's clothes</MenuItem>
-                    <MenuItem onClick={handleClose}>women's clothes</MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      <Button
+                        variant="contained"
+                        color="error"
+                        sx={{ marginBottom: "3%" }}
+                        onClick={() =>
+                          navigate("category/products/men's clothing")
+                        }
+                      >
+                        men's clothes
+                      </Button>
+                    </MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      <Button
+                        variant="contained"
+                        color="error"
+                        sx={{ marginBottom: "3%" }}
+                        onClick={() =>
+                          navigate("category/products/women's clothing")
+                        }
+                      >
+                        women's clothes
+                      </Button>
+                    </MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
@@ -109,5 +139,6 @@ export default function AllCategoriesMenu() {
         </Popper>
       </div>
     </Stack>
+    </Box>
   );
 }

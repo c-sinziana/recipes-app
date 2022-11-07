@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import { AxiosRequestConfig } from "axios";
 import React, { useEffect, useState } from "react";
 import useFetchData from "../hooks/useFetchData";
-import SingleProductPage from "../pages/SingleProductPage";
+import SingleProductPage from "../product/SingleProductPage";
 
 export default function DeleteProduct() {
   const [isResponseSuccesful, setIsResponseSuccessful] = useState<

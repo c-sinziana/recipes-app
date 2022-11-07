@@ -34,3 +34,22 @@ export const passwordFieldRule: {
       "Minimum six characters, at least one uppercase letter, one lowercase letter, one digit and one special character",
   },
 };
+
+export const titleFieldRule: {
+  [key: string]: { [key: string]: RegExp | string };
+} = {
+  pattern: {
+    value: /^[^.-_#][A-Za-z0-9_ -.]+$/,
+    message: "Must be longer than 2 characters and in a valid email format",
+  },
+};
+
+export const urlFieldRule: {
+  [key: string]: { [key: string]: RegExp | string };
+} = {
+  pattern: {
+    value:
+      /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi,
+    message: "Must introduce a valid url of the image",
+  },
+};
