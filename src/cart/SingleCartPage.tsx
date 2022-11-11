@@ -3,13 +3,11 @@ import * as React from "react";
 import { AxiosRequestConfig } from "axios";
 import useFetchData from "../hooks/useFetchData";
 import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Box, Grid } from "@mui/material";
+import DeleteCart from "./DeleteCart";
 
 export default function SingleCartPage() {
   const cartRequest: AxiosRequestConfig = {
@@ -17,7 +15,7 @@ export default function SingleCartPage() {
     method: "get",
   };
 
-  const { data: cart, loading, error } = useFetchData(cartRequest);
+  const [{ data: cart, loading, error }] = useFetchData(cartRequest, true);
 
   return (
     <Box

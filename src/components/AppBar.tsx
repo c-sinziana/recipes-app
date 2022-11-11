@@ -90,14 +90,7 @@ export default function PrimarySearchAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuDrawer />
-          </IconButton>
+          <MenuDrawer />
           <Typography
             variant="h6"
             fontFamily="cursive"

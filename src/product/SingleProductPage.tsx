@@ -1,10 +1,8 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -13,6 +11,7 @@ import useFetchData from "../hooks/useFetchData";
 import { AxiosRequestConfig } from "axios";
 import ProductEditModal from "../components/ProductEditModal";
 import { FaShoppingCart } from "react-icons/fa";
+import { useSearchParams } from "react-router-dom";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -30,12 +29,16 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 export default function SingleProductPage() {
+  const [searchParams] = useSearchParams();
+
+  const productId: string | null = searchParams.get("product");
+
   const productRequest: AxiosRequestConfig = {
-    url: `/products/${18}`,
+    url: `/stuff/${productId}`,
     method: "get",
   };
 
-  const { data: product, loading, error } = useFetchData(productRequest);
+  const { data: product, loading, error } = useFetchData(productRequest, true);
 
   return (
     <Box

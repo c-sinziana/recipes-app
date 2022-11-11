@@ -55,7 +55,7 @@ const Menu = () => {
                 variant="contained"
                 color="error"
                 sx={{ marginBottom: "3%" }}
-                onClick={() => navigate("/products")}
+                onClick={() => navigate("/stuff")}
               >
                 Products
               </Button>

@@ -11,7 +11,10 @@ type RequestState = {
   error: any;
 };
 
-const useFetchData = (requestConfig: AxiosRequestConfig): any => {
+const useFetchData = (
+  requestConfig: AxiosRequestConfig,
+  auto: boolean
+): any => {
   const [requestState, setRequestState] = useState<RequestState>({
     data: [],
     loading: false,
@@ -49,7 +52,7 @@ const useFetchData = (requestConfig: AxiosRequestConfig): any => {
       await fetchData();
     };
 
-    if (requestConfig.url) {
+    if (requestConfig.url && auto === true) {
       sendRequest();
     }
   }, [requestConfig.url, JSON.stringify(requestConfig.data)]);

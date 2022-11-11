@@ -9,14 +9,12 @@ import CategoryProducts from "./pages/CategoryProducts";
 import AllCartsPage from "./cart/AllCartsPage";
 import ProductsPage from "./product/ProductsPage";
 import SingleCartPage from "./cart/SingleCartPage";
-import UsersPage from "./pages/UsersPage";
+import UsersPage from "./user/UsersPage";
 import WishlistPage from "./pages/WishlistPage";
 import MyCartPage from "./cart/MyCartPage";
-import MyProfilePage from "./pages/MyProfilePage";
+import MyProfilePage from "./user/MyProfilePage";
 import AddProduct from "./product/AddProduct";
-import ElectronicsProducts from "./pages/ElectronicsProducts";
-import MenClothesCategory from "./pages/MenClothesCategory";
-import WomensClothesCategory from "./pages/WomensClothesCategory";
+import AddCart from "./cart/AddCart";
 
 function App() {
   return (
@@ -27,20 +25,8 @@ function App() {
         <Route path="register" element={<RegisterPage />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="product" element={<SingleProductPage />} />
-        <Route path="products" element={<ProductsPage />} />
-        <Route path="category/products" element={<CategoryProducts />} />
-        <Route
-          path="category/products/electronics"
-          element={<ElectronicsProducts />}
-        />
-        <Route
-          path="category/products/men's clothing"
-          element={<MenClothesCategory />}
-        />
-        <Route
-          path="category/products/women's clothing"
-          element={<WomensClothesCategory />}
-        />
+        <Route path="stuff" element={<ProductsPage />} />
+        <Route path="products" element={<CategoryProducts />} />
         <Route path="carts" element={<AllCartsPage />} />
         <Route path="single-cart" element={<SingleCartPage />} />
         <Route path="users" element={<UsersPage />} />
@@ -48,6 +34,7 @@ function App() {
         <Route path="wishlist" element={<WishlistPage />} />
         <Route path="my-cart" element={<MyCartPage />} />
         <Route path="add-product" element={<AddProduct />} />
+        <Route path="add-order" element={<AddCart />} />
       </Routes>
     </div>
   );

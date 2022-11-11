@@ -21,24 +21,16 @@ export default function AddProduct() {
   const [showAlert, setShowAlert] = useState(false);
   const [customProduct, setCustomProduct] = useState<any>();
 
-  const [title, setTitle] = useState<string>("title");
-
-  const [price, setPrice] = useState<number>();
-
-  const [description, setDescription] = useState<string>("description");
-
-  const [category, setCategory] = useState<string>("category");
-
-  const [image, setImage] = useState<string>("image");
-
   const addProductRequest: AxiosRequestConfig = {
     url: `/products/`,
     method: "post",
     data: JSON.stringify(customProduct),
   };
 
-  const [{ data: product, loading, error }, fetchData] =
-    useFetchData(addProductRequest);
+  const [{ data: product, loading, error }, fetchData] = useFetchData(
+    addProductRequest,
+    true
+  );
 
   const {
     register,

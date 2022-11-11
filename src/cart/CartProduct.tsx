@@ -22,47 +22,10 @@ export default function CartProduct({ productId, quantity }: CartProductProp) {
     method: "get",
   };
 
-  /*
-  *
-  V1
-  const [customProduct, setCustomProduct] = useState();
-
-  const addProductRequest: AxiosRequestConfig = {
-    url: `/products/`,
-    method: "post",
-    data: JSON.stringify(customProduct)
-  };
-
-  const [{ data: product, loading, error }, fetchData] =
-    useFetchData(productRequest);
-
-   const handleFormSubmission = (data: { [key: string]: string }) => {
-    setCustomProduct({name: data["name"], price: data["price"], ...});
-  };
-
-  return (
-    <Button onClick={() => fetchData()} />
+  const [{ data: product, loading, error }] = useFetchData(
+    productRequest,
+    true
   );
-
-  V2 
-  let customProduct = {};
-
-  const addProductRequest: AxiosRequestConfig = {
-    url: `/products/`,
-    method: "post",
-    data: JSON.stringify(customProduct)
-  };
-
-  const [{ data: product, loading, error }, fetchData] =
-    useFetchData(productRequest);
-
-  const handleFormSubmission = (data: { [key: string]: string }) => {
-    customProduct = {name: data["name"], price: data["price"], ...};
-    fetchData();
-  };
-  */
-
-  const [{ data: product, loading, error }] = useFetchData(productRequest);
 
   return (
     <Box

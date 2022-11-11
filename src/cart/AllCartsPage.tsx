@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import { Box, Card, Divider, Typography } from "@mui/material";
+import { Box, Card, Divider, IconButton, Typography } from "@mui/material";
 import { AxiosRequestConfig } from "axios";
 import useFetchData from "../hooks/useFetchData";
 import { trimDate } from "../assets/Utils";
-import CartProduct from "../components/CartProduct";
+import CartProduct from "./CartProduct";
+import DeleteCart from "./DeleteCart";
 
 export default function AllCartsPage() {
   const cartsRequest: AxiosRequestConfig = {
@@ -11,8 +12,7 @@ export default function AllCartsPage() {
     method: "get",
   };
 
-  const [{ data: carts, loading, error }, fetchData] =
-    useFetchData(cartsRequest);
+  const [{ data: carts, loading, error }] = useFetchData(cartsRequest, true);
 
   return (
     <Box
@@ -22,7 +22,7 @@ export default function AllCartsPage() {
       marginTop="5%"
     >
       {carts.map((cart: any) => (
-        <Card raised sx={{ width: 1000, marginTop: "2%" }}>
+        <Card key={cart.id} raised sx={{ width: 1000, marginTop: "2%" }}>
           <Typography variant="h5">Your order</Typography>
           <Box
             sx={{
@@ -58,6 +58,7 @@ export default function AllCartsPage() {
             ))}
           </Box>
           <Divider />
+          <DeleteCart id={cart.id} />
         </Card>
       ))}
     </Box>

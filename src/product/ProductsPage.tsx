@@ -16,6 +16,7 @@ import { BsHeartFill } from "react-icons/bs";
 import { FaShoppingCart } from "react-icons/fa";
 import { HiSearch } from "react-icons/hi";
 import { useNavigate } from "react-router";
+import DeleteProduct from "./DeleteProduct";
 
 export default function ProductsPage() {
   const productsRequest: AxiosRequestConfig = {
@@ -25,8 +26,10 @@ export default function ProductsPage() {
 
   const navigate = useNavigate();
 
-  const [{ data: products, loading, error }, fetchData] =
-    useFetchData(productsRequest);
+  const [{ data: products, loading, error }] = useFetchData(
+    productsRequest,
+    true
+  );
 
   return (
     <Grid
@@ -46,12 +49,13 @@ export default function ProductsPage() {
         >
           <Card
             raised
+            key={product.id}
             sx={{
               height: { sm: "40rem", md: "40rem", xs: "30rem" },
               bgcolor: "lightgrey",
             }}
           >
-            <CardActionArea onClick={() => navigate("/product")}>
+            <CardActionArea onClick={() => navigate(`stuff/?+=${product}`)}>
               <CardMedia
                 component="img"
                 image={product.image}
@@ -73,6 +77,7 @@ export default function ProductsPage() {
                 <FaShoppingCart />
               </IconButton>
             </CardActionArea>
+            <DeleteProduct id={product.id} />
           </Card>
         </Grid>
       ))}
