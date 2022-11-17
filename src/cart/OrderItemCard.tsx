@@ -1,22 +1,24 @@
+import React from "react";
 import {
   Box,
   Card,
   CardContent,
   CardMedia,
   Chip,
-  Divider,
   Typography,
 } from "@mui/material";
 import { AxiosRequestConfig } from "axios";
-import React from "react";
 import useFetchData from "../hooks/useFetchData";
 
-type CartProductProp = {
+type OrderItemCardProp = {
   productId: number;
   quantity: number;
 };
 
-export default function CartProduct({ productId, quantity }: CartProductProp) {
+export default function OrderItemCard({
+  productId,
+  quantity,
+}: OrderItemCardProp) {
   const productRequest: AxiosRequestConfig = {
     url: `/products/${productId}`,
     method: "get",
@@ -34,14 +36,13 @@ export default function CartProduct({ productId, quantity }: CartProductProp) {
         flexDirection: { sm: "row", md: "row", xs: "column" },
         marginTop: "3%",
         justifyContent: "center",
-        height: "23rem",
+        height: 400,
       }}
     >
       <Card
         raised
         sx={{
-          maxWidth: "md",
-          bgcolor: "lightgray",
+          width: { xs: 200, sm: 300, md: 300 },
           alignItems: "center",
           marginTop: "2%",
         }}
@@ -56,8 +57,8 @@ export default function CartProduct({ productId, quantity }: CartProductProp) {
               image={product.image}
               alt="no image"
               sx={{
-                width: { sm: "10rem", md: "10rem", xs: "8rem" },
-                height: "13rem",
+                width: { sm: 200, md: 200, xs: 100 },
+                height: 200,
                 objectFit: "contain",
                 marginTop: "1%",
                 marginLeft: { xs: "5%" },
@@ -67,19 +68,6 @@ export default function CartProduct({ productId, quantity }: CartProductProp) {
             <Box flexDirection="row" display="flex" justifyContent="center">
               <Chip label={product.price} variant="filled" color="success" /> $
             </Box>
-          </Box>
-          <Box
-            sx={{
-              justifyContent: "center",
-              alingItems: "center",
-              marginTop: { sm: "5%", md: "5%" },
-            }}
-          >
-            <CardContent>
-              <Typography variant="h6" color="text.primary">
-                {product.description}
-              </Typography>
-            </CardContent>
           </Box>
         </Box>
       </Card>

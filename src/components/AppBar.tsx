@@ -7,17 +7,13 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import MoreIcon from "@mui/icons-material/MoreVert";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import { AiOutlineShoppingCart } from "react-icons/ai";
 import MenuDrawer from "./Menu";
-
 import { useNavigate } from "react-router-dom";
 import AllCategoriesMenu from "../pages/AllCategoriesMenu";
+import { useShoppingCart } from "../context/ShoppingCartContext";
+import ShoppingCart from "../cart/ShoppingCart";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -59,36 +55,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
+  const { openCart, cartQuantity } = useShoppingCart();
   const navigate = useNavigate();
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
-    React.useState<null | HTMLElement>(null);
-
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-
-  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
-
-  const mobileMenuId = "primary-search-account-menu-mobile";
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{ maxWidth: "100%" }}>
         <Toolbar>
           <MenuDrawer />
           <Typography
@@ -100,7 +72,7 @@ export default function PrimarySearchAppBar() {
           >
             eShop
           </Typography>
-          <Box sx={{ marginLeft: "2%" }}>
+          <Box>
             <AllCategoriesMenu />
           </Box>
           <Search>
@@ -113,25 +85,12 @@ export default function PrimarySearchAppBar() {
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              size="large"
-              color="inherit"
-              onClick={() => navigate("/wishlist")}
-            >
-              <Badge color="error">
-                <FavoriteIcon />
-              </Badge>
+          <Box sx={{ display: { xs: "flex", md: "flex" } }}>
+            <IconButton size="large" color="inherit" onClick={openCart}>
+              <Badge badgeContent={cartQuantity} color="error" />
+              <ShoppingCart />
             </IconButton>
-            <IconButton
-              size="large"
-              color="inherit"
-              onClick={() => navigate("/my-cart")}
-            >
-              <Badge color="error">
-                <AiOutlineShoppingCart />
-              </Badge>
-            </IconButton>
+
             <IconButton
               size="large"
               edge="end"

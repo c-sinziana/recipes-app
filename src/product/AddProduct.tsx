@@ -27,10 +27,7 @@ export default function AddProduct() {
     data: JSON.stringify(customProduct),
   };
 
-  const [{ data: product, loading, error }, fetchData] = useFetchData(
-    addProductRequest,
-    true
-  );
+  const fetchData = useFetchData(addProductRequest, false)[1];
 
   const {
     register,
@@ -174,7 +171,7 @@ export default function AddProduct() {
           </Grid>
         </Container>
       </form>
-      {showAlert && <Alert>Form submitted successfully!</Alert>}
+      {showAlert && <Alert>Product successfully added!</Alert>}
     </>
   );
 }

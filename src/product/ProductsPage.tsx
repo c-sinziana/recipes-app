@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Box,
+  Button,
   Card,
   CardActionArea,
   CardMedia,
@@ -17,6 +18,9 @@ import { FaShoppingCart } from "react-icons/fa";
 import { HiSearch } from "react-icons/hi";
 import { useNavigate } from "react-router";
 import DeleteProduct from "./DeleteProduct";
+import { useShoppingCart } from "../context/ShoppingCartContext";
+import ProductCard from "./ProductCard";
+import { MdAddPhotoAlternate } from "react-icons/md";
 
 export default function ProductsPage() {
   const productsRequest: AxiosRequestConfig = {
@@ -36,50 +40,15 @@ export default function ProductsPage() {
       container
       spacing={6}
       sx={{
-        flexDirection: { sm: "row", md: "row", xs: "column" },
+        flexDirection: { xs: "column", sm: "row" },
+        alignItems: { xs: "center", sm: "center", md: "center" },
       }}
       marginTop="2%"
+      alignItems="center"
       marginLeft="1%"
     >
-      {products.map((product: any, index: number) => (
-        <Grid
-          item
-          spacing={3}
-          sx={{ width: { sm: "50%", md: "30%", xs: "100%" } }}
-        >
-          <Card
-            raised
-            key={product.id}
-            sx={{
-              height: { sm: "40rem", md: "40rem", xs: "30rem" },
-              bgcolor: "lightgrey",
-            }}
-          >
-            <CardActionArea onClick={() => navigate(`stuff/?+=${product}`)}>
-              <CardMedia
-                component="img"
-                image={product.image}
-                alt="no image"
-                sx={{
-                  height: 350,
-                  width: "100%",
-                  marginTop: "5%",
-                  objectFit: "contain",
-                }}
-              />
-              <Typography variant="h5">{product.title}</Typography>
-              <Typography>Price: {product.price} $</Typography>
-
-              <IconButton size="large" color="inherit">
-                <BsHeartFill />
-              </IconButton>
-              <IconButton size="large" color="inherit">
-                <FaShoppingCart />
-              </IconButton>
-            </CardActionArea>
-            <DeleteProduct id={product.id} />
-          </Card>
-        </Grid>
+      {products.map((product: any) => (
+        <ProductCard product={product} />
       ))}
     </Grid>
   );

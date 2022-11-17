@@ -27,7 +27,7 @@ export default function AddCart() {
     data: JSON.stringify(customCart),
   };
 
-  const [fetchData] = useFetchData(addOrderRequest, false);
+  const fetchData = useFetchData(addOrderRequest, false)[1];
 
   const {
     register,

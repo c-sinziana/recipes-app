@@ -5,6 +5,13 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { IconButton, TextField } from "@mui/material";
 import { TiPen } from "react-icons/ti";
+import { AxiosRequestConfig } from "axios";
+import useFetchData from "../hooks/useFetchData";
+import { useState } from "react";
+
+type ProductEditProp = {
+  id: number;
+};
 
 const style = {
   position: "absolute" as "absolute",
@@ -18,15 +25,26 @@ const style = {
   p: 4,
 };
 
-export default function ProfileEditModal() {
+export default function ProductEditModal({ id }: ProductEditProp) {
+  const [editProduct, setEditProduct] = useState();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const editProductRequest: AxiosRequestConfig = {
+    url: `/products/${id}`,
+    method: "put",
+    data: JSON.stringify(editProduct),
+  };
+
+  const fetchData = useFetchData(editProductRequest, false)[1];
+
   return (
     <div>
-      <Button onClick={handleOpen} variant="contained" color="error">
-        Edit profile
+      <Button onClick={handleOpen}>
+        <IconButton size="large" color="inherit">
+          <TiPen />
+        </IconButton>
       </Button>
       <Modal open={open} onClose={handleClose}>
         <Box
@@ -36,7 +54,7 @@ export default function ProfileEditModal() {
           display="flex"
           flexDirection="column"
         >
-          <Typography>Edit profile:</Typography>
+          <Typography>Edit product:</Typography>
 
           <TextField
             type="name"
@@ -46,27 +64,38 @@ export default function ProfileEditModal() {
             sx={{ marginTop: "5%" }}
           />
           <TextField
-            type="username"
+            type="description"
             fullWidth
             autoFocus
-            label="Username*"
+            label="Description*"
             sx={{ marginTop: "5%" }}
           />
           <TextField
-            type="email"
+            type="price"
             fullWidth
             autoFocus
-            label="Email*"
+            label="Price*"
             sx={{ marginTop: "5%" }}
           />
           <TextField
-            type="phone"
+            type="image"
             fullWidth
-            autoFocus 
-            label="Phone*"
+            autoFocus
+            label="Image URL*"
             sx={{ marginTop: "5%" }}
           />
-          <Button variant="contained" color="error" sx={{ marginBottom: "3%" }}>
+          <TextField
+            type="category"
+            fullWidth
+            autoFocus
+            label="Category*"
+            sx={{ marginTop: "5%" }}
+          />
+          <Button
+            variant="contained"
+            color="error"
+            onClick={() => fetchData(editProductRequest)}
+          >
             Submit
           </Button>
         </Box>

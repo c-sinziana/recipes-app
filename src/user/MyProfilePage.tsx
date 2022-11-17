@@ -1,9 +1,10 @@
-import { Box, Button, Card, Grid, Typography } from "@mui/material";
+import { Box, Button, Card, Grid, IconButton, Typography } from "@mui/material";
 import { AxiosRequestConfig } from "axios";
 import React from "react";
 import useFetchData from "../hooks/useFetchData";
 import { GrEdit } from "react-icons/gr";
-import ProfileEditModal from "../components/ProfileEditModal";
+import ProfileEditModal from "./ProfileEditModal";
+import DeleteUser from "./DeleteUser";
 
 export default function MyProfilePage() {
   const userRequest: AxiosRequestConfig = {
@@ -49,16 +50,10 @@ export default function MyProfilePage() {
                 justifyContent: "center",
               }}
             >
-              <ProfileEditModal />
-
-              <Button
-                color="error"
-                variant="contained"
-                size="small"
-                sx={{ marginLeft: "1%" }}
-              >
-                Delete profile
-              </Button>
+              <Box sx={{ marginRight: "2%" }}>
+                <ProfileEditModal id={user.id} />
+              </Box>
+              <DeleteUser id={user.id} />
             </Box>
           </Box>
         </Card>

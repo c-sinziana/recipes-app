@@ -6,12 +6,13 @@ import CardContent from "@mui/material/CardContent";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { Box, Grid } from "@mui/material";
+import { Box } from "@mui/material";
 import useFetchData from "../hooks/useFetchData";
 import { AxiosRequestConfig } from "axios";
-import ProductEditModal from "../components/ProductEditModal";
+import ProductEditModal from "./ProductEditModal";
 import { FaShoppingCart } from "react-icons/fa";
-import { useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -29,16 +30,20 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 export default function SingleProductPage() {
-  const [searchParams] = useSearchParams();
+  const { increaseCartQuantity } = useShoppingCart();
+  const params = useParams();
 
-  const productId: string | null = searchParams.get("product");
+  console.log("My single product id is: " + params.id);
 
   const productRequest: AxiosRequestConfig = {
-    url: `/stuff/${productId}`,
+    url: `/products/${params.id}`,
     method: "get",
   };
 
-  const { data: product, loading, error } = useFetchData(productRequest, true);
+  const [{ data: product, loading, error }] = useFetchData(
+    productRequest,
+    true
+  );
 
   return (
     <Box
@@ -49,10 +54,7 @@ export default function SingleProductPage() {
         justifyContent: "center",
       }}
     >
-      <Card
-        raised
-        sx={{ maxWidth: "md", bgcolor: "lightblue", alignItems: "center" }}
-      >
+      <Card raised sx={{ maxWidth: "md", alignItems: "center" }}>
         <Box
           sx={{ flexDirection: { sm: "row", md: "row", xs: "column" } }}
           display="flex"
@@ -76,8 +78,12 @@ export default function SingleProductPage() {
               <IconButton size="large" color="primary">
                 <FavoriteIcon />
               </IconButton>
-              <ProductEditModal />
-              <IconButton size="large" color="primary">
+              <ProductEditModal id={product.id} />
+              <IconButton
+                size="large"
+                color="primary"
+                onClick={() => increaseCartQuantity(product.id)}
+              >
                 <FaShoppingCart />
               </IconButton>
             </Box>

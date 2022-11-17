@@ -1,6 +1,6 @@
-import { Button } from "@mui/material";
+import { Alert, Button } from "@mui/material";
 import { AxiosRequestConfig } from "axios";
-import React from "react";
+import React, { useState } from "react";
 import useFetchData from "../hooks/useFetchData";
 
 type DeleteUserProp = {
@@ -8,16 +8,20 @@ type DeleteUserProp = {
 };
 
 export default function DeleteUser({ id }: DeleteUserProp) {
+  const [showAlert, setShowAlert] = useState(false);
   const deleteUserRequest: AxiosRequestConfig = {
     url: `/users/${id}`,
     method: "delete",
   };
 
   const fetchData = useFetchData(deleteUserRequest, false)[1];
-  
+
   return (
-    <Button variant="contained" onClick={() => fetchData()}>
-      Delete user
-    </Button>
+    <>
+      <Button variant="contained" onClick={() => fetchData()}>
+        Delete user
+      </Button>
+      {showAlert && <Alert>User successfully deleted!</Alert>}
+    </>
   );
 }

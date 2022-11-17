@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { AxiosRequestConfig } from "axios";
 import React from "react";
+import ProfileEditModal from "./ProfileEditModal";
 import useFetchData from "../hooks/useFetchData";
 import SingleProductPage from "../product/SingleProductPage";
 import DeleteUser from "./DeleteUser";
@@ -35,6 +36,9 @@ export default function UsersPage() {
           <Typography>City: {user.address.city}</Typography>
           <IconButton>
             <DeleteUser id={user.id} />
+          </IconButton>
+          <IconButton>
+            <ProfileEditModal id={user.id} />
           </IconButton>
         </Card>
       ))}

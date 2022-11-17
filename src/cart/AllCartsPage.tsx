@@ -3,8 +3,9 @@ import { Box, Card, Divider, IconButton, Typography } from "@mui/material";
 import { AxiosRequestConfig } from "axios";
 import useFetchData from "../hooks/useFetchData";
 import { trimDate } from "../assets/Utils";
-import CartProduct from "./CartProduct";
 import DeleteCart from "./DeleteCart";
+import CartItem from "./CartItem";
+import OrderItemCard from "./OrderItemCard";
 
 export default function AllCartsPage() {
   const cartsRequest: AxiosRequestConfig = {
@@ -22,7 +23,15 @@ export default function AllCartsPage() {
       marginTop="5%"
     >
       {carts.map((cart: any) => (
-        <Card key={cart.id} raised sx={{ width: 1000, marginTop: "2%" }}>
+        <Card
+          key={cart.id}
+          raised
+          sx={{
+            marginTop: "2%",
+            bgcolor: "lightgray",
+            width: { sm: 500, md: 800, xs: 400 },
+          }}
+        >
           <Typography variant="h5">Your order</Typography>
           <Box
             sx={{
@@ -50,10 +59,7 @@ export default function AllCartsPage() {
                   alignItems: "flex-start",
                 }}
               >
-                <CartProduct
-                  productId={product.productId}
-                  quantity={product.quantity}
-                />
+                <OrderItemCard {...product} />
               </Box>
             ))}
           </Box>
