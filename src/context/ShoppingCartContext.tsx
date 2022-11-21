@@ -1,5 +1,6 @@
 import React, { createContext, ReactNode, useContext, useState } from "react";
-import ShoppingCart from "../cart/ShoppingCart";
+
+import ShoppingCartDrawer from "../components/cart/ShoppingCartDrawer";
 
 type ShoppingCartProviderProp = {
   children: ReactNode;
@@ -79,6 +80,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProp) {
       return currProducts.filter((product) => product.id !== id);
     });
   }
+  
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -92,6 +94,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProp) {
         cartQuantity,
       }}
     >
+      <ShoppingCartDrawer isOpen={isOpen} />
       {children}
     </ShoppingCartContext.Provider>
   );

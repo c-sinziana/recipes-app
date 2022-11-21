@@ -1,26 +1,10 @@
 import React from "react";
-import {
-  Box,
-  Button,
-  Card,
-  CardActionArea,
-  CardMedia,
-  Grid,
-  IconButton,
-  Typography,
-} from "@mui/material";
+import { Grid } from "@mui/material";
 import { AxiosRequestConfig } from "axios";
+import { useNavigate } from "react-router";
 
 import useFetchData from "../hooks/useFetchData";
-import SingleProductPage from "./SingleProductPage";
-import { BsHeartFill } from "react-icons/bs";
-import { FaShoppingCart } from "react-icons/fa";
-import { HiSearch } from "react-icons/hi";
-import { useNavigate } from "react-router";
-import DeleteProduct from "./DeleteProduct";
-import { useShoppingCart } from "../context/ShoppingCartContext";
-import ProductCard from "./ProductCard";
-import { MdAddPhotoAlternate } from "react-icons/md";
+import ProductCard from "../components/product/ProductCard";
 
 export default function ProductsPage() {
   const productsRequest: AxiosRequestConfig = {

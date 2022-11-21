@@ -1,13 +1,9 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
-import { IconButton, TextField } from "@mui/material";
-import { TiPen } from "react-icons/ti";
+import  React, { useState } from "react";
+import { Button, IconButton, Modal, Box, Typography, TextField } from "@mui/material";
 import { AxiosRequestConfig } from "axios";
-import useFetchData from "../hooks/useFetchData";
-import { useState } from "react";
+import { TiPen } from "react-icons/ti";
+
+import useFetchData from "../../hooks/useFetchData";
 
 type ProductEditProp = {
   id: number;
@@ -27,7 +23,7 @@ const style = {
 
 export default function ProductEditModal({ id }: ProductEditProp) {
   const [editProduct, setEditProduct] = useState();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 

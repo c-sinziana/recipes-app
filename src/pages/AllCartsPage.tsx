@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { Box, Card, Divider, IconButton, Typography } from "@mui/material";
+import React from "react";
+import { Box, Card, Divider, Typography } from "@mui/material";
 import { AxiosRequestConfig } from "axios";
+
 import useFetchData from "../hooks/useFetchData";
 import { trimDate } from "../assets/Utils";
-import DeleteCart from "./DeleteCart";
-import CartItem from "./CartItem";
-import OrderItemCard from "./OrderItemCard";
+import DeleteCartButton from "../components/cart/DeleteCartButton";
+import OrderItemCard from "../components/cart/OrderItemCard";
 
 export default function AllCartsPage() {
   const cartsRequest: AxiosRequestConfig = {
@@ -64,7 +64,7 @@ export default function AllCartsPage() {
             ))}
           </Box>
           <Divider />
-          <DeleteCart id={cart.id} />
+          <DeleteCartButton id={cart.id} />
         </Card>
       ))}
     </Box>

@@ -1,19 +1,27 @@
 import React, { useState } from "react";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import { Button, Divider, Drawer, Typography } from "@mui/material";
-import Paper from "@mui/material/Paper";
-
-import { useNavigate } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { useShoppingCart } from "../context/ShoppingCartContext";
-import CartItem from "./CartItem";
+import {
+  Button,
+  IconButton,
+  Drawer,
+  Box,
+  Typography,
+  Divider,
+  Paper,
+} from "@mui/material";
 import { AxiosRequestConfig } from "axios";
-import useFetchData from "../hooks/useFetchData";
 
-const ShoppingCart = () => {
-  const { cartProducts } = useShoppingCart();
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+import { useShoppingCart } from "../../context/ShoppingCartContext";
+import CartItemCard from "./CartItemCard";
+import useFetchData from "../../hooks/useFetchData";
+import ToastAlert from "../ToastAlert";
+
+interface ShoppingCartProps {
+  isOpen: boolean;
+}
+
+export default function ShoppingCartDrawer({ isOpen }: ShoppingCartProps) {
+  const { openCart, closeCart, cartProducts } = useShoppingCart();
 
   const [showAlert, setShowAlert] = useState(false);
   const [customCart, setCustomCart] = useState<any>();
@@ -37,21 +45,7 @@ const ShoppingCart = () => {
 
   return (
     <>
-      <IconButton
-        size="large"
-        edge="start"
-        color="inherit"
-        aria-label="open drawer"
-        sx={{ mr: 2 }}
-        onClick={() => setIsDrawerOpen(true)}
-      >
-        <AiOutlineShoppingCart />
-      </IconButton>
-      <Drawer
-        anchor="right"
-        open={isDrawerOpen}
-        onClose={() => setIsDrawerOpen(false)}
-      >
+      <Drawer anchor="right" open={isOpen} onClose={() => closeCart()}>
         <Box
           sx={{
             alignItems: "center",
@@ -73,7 +67,7 @@ const ShoppingCart = () => {
               }}
             >
               {cartProducts.map((product) => (
-                <CartItem key={product.id} {...product} />
+                <CartItemCard key={product.id} {...product} />
               ))}
             </Box>
             {cartProducts.length > 0 && (
@@ -86,11 +80,12 @@ const ShoppingCart = () => {
                 Submit
               </Button>
             )}
+            {showAlert && (
+              <ToastAlert message="Product successfully added" isTrue={true} />
+            )}
           </Paper>
         </Box>
       </Drawer>
     </>
   );
-};
-
-export default ShoppingCart;
+}

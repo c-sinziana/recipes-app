@@ -1,45 +1,48 @@
 import React from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import AppBar from "./components/AppBar";
+
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
-import SingleProductPage from "./product/SingleProductPage";
+import SingleProductPage from "./pages/SingleProductPage";
 import CategoryProducts from "./pages/CategoryProducts";
-import AllCartsPage from "./cart/AllCartsPage";
-import ProductsPage from "./product/ProductsPage";
-import SingleCartPage from "./cart/SingleCartPage";
-import UsersPage from "./user/UsersPage";
+import AllCartsPage from "./pages/AllCartsPage";
+import ProductsPage from "./pages/ProductsPage";
+import SingleCartPage from "./pages/SingleCartPage";
+import UsersPage from "./pages/UsersPage";
 import WishlistPage from "./pages/WishlistPage";
-import MyProfilePage from "./user/MyProfilePage";
-import AddProduct from "./product/AddProduct";
-import AddCart from "./cart/AddCart";
-import AddUser from "./user/AddUser";
+import MyProfilePage from "./pages/MyProfilePage";
+import AddProductForm from "./components/product/AddProductForm";
+import AddUserForm from "./components/user/AddUserForm";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
+import { ColorModeContextProvider } from "./context/ThemeContext";
+import { darkTheme } from "./theme/Theme";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <ShoppingCartProvider>
-      <div className="App">
-        <AppBar />
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/product/:id" element={<SingleProductPage />} />
-          <Route path="/stuff" element={<ProductsPage />} />
-          <Route path="/products" element={<CategoryProducts />} />
-          <Route path="/carts" element={<AllCartsPage />} />
-          <Route path="/single-cart" element={<SingleCartPage />} />
-          <Route path="/users" element={<UsersPage />} />
-          <Route path="/user" element={<MyProfilePage />} />
-          <Route path="/wishlist" element={<WishlistPage />} />
-          <Route path="/add-product" element={<AddProduct />} />
-          <Route path="/add-order" element={<AddCart />} />
-          <Route path="/add-user" element={<AddUser />} />
-        </Routes>
-      </div>
-    </ShoppingCartProvider>
+    <ColorModeContextProvider theme={darkTheme}>
+      <ShoppingCartProvider>
+        <div className="App">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/product/:id" element={<SingleProductPage />} />
+            <Route path="/stuff" element={<ProductsPage />} />
+            <Route path="/products" element={<CategoryProducts />} />
+            <Route path="/carts" element={<AllCartsPage />} />
+            <Route path="/single-cart" element={<SingleCartPage />} />
+            <Route path="/users" element={<UsersPage />} />
+            <Route path="/user" element={<MyProfilePage />} />
+            <Route path="/wishlist" element={<WishlistPage />} />
+            <Route path="/add-product" element={<AddProductForm />} />
+            <Route path="/add-user" element={<AddUserForm />} />
+          </Routes>
+        </div>
+      </ShoppingCartProvider>
+    </ColorModeContextProvider>
   );
 }
 

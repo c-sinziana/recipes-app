@@ -1,18 +1,14 @@
-import * as React from "react";
+import React from "react";
 import { styled } from "@mui/material/styles";
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
+import { IconButtonProps, IconButton, Box, Card, CardMedia, Typography, Chip, CardContent } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { Box } from "@mui/material";
-import useFetchData from "../hooks/useFetchData";
-import { AxiosRequestConfig } from "axios";
-import ProductEditModal from "./ProductEditModal";
 import { FaShoppingCart } from "react-icons/fa";
-import { useParams, useSearchParams } from "react-router-dom";
+import { AxiosRequestConfig } from "axios";
+import { useParams } from "react-router";
+
 import { useShoppingCart } from "../context/ShoppingCartContext";
+import useFetchData from "../hooks/useFetchData";
+import ProductEditModal from "../components/product/ProductEditModal";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -73,7 +69,12 @@ export default function SingleProductPage() {
               }}
             />
             <Typography variant="h6">{product.title}</Typography>
-            <Typography>{product.price} $</Typography>
+            <Chip
+              label={product.price + "" + "$"}
+              variant="filled"
+              color="success"
+              sx={{ width: "40%" }}
+            />
             <Box justifyContent="center" flexDirection="row" display="flex">
               <IconButton size="large" color="primary">
                 <FavoriteIcon />

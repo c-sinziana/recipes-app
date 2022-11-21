@@ -1,13 +1,8 @@
-import * as React from "react";
-
+import React from "react";
 import { AxiosRequestConfig } from "axios";
+import { Box, Typography, Card, Grid, CardContent } from "@mui/material";
+
 import useFetchData from "../hooks/useFetchData";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import { Box, Grid } from "@mui/material";
-import DeleteCart from "./DeleteCart";
 
 export default function SingleCartPage() {
   const cartRequest: AxiosRequestConfig = {

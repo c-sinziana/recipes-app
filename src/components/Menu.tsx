@@ -1,15 +1,8 @@
 import React, { useState } from "react";
-import MenuItem from "@mui/material/MenuItem";
+import { IconButton, Drawer, Box, Divider, Paper, Button } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import { Button, Divider, Drawer, Typography } from "@mui/material";
-import Paper from "@mui/material/Paper";
-import MenuList from "@mui/material/MenuList";
-import ListItemText from "@mui/material/ListItemText";
 import { HiOutlineShoppingBag } from "react-icons/hi";
-
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 const Menu = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -74,6 +67,14 @@ const Menu = () => {
                 onClick={() => navigate("/add-product")}
               >
                 Add new product
+              </Button>
+              <Button
+                variant="contained"
+                color="error"
+                sx={{ marginBottom: "3%" }}
+                onClick={() => navigate("/add-user")}
+              >
+                Add user
               </Button>
               <Button
                 variant="contained"

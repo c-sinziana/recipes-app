@@ -1,18 +1,19 @@
+import React from "react";
 import { ShoppingCart } from "@mui/icons-material";
 import {
   Box,
   Card,
   CardActionArea,
   CardMedia,
+  Chip,
   Grid,
   IconButton,
   Typography,
 } from "@mui/material";
-import React from "react";
-
 import { useNavigate } from "react-router";
-import { useShoppingCart } from "../context/ShoppingCartContext";
-import DeleteProduct from "./DeleteProduct";
+
+import { useShoppingCart } from "../../context/ShoppingCartContext";
+import DeleteProductButton from "./DeleteProductButton";
 import ProductEditModal from "./ProductEditModal";
 
 interface ProductCardProps {
@@ -58,9 +59,14 @@ export default function ProductCard({ product }: ProductCardProps) {
             }}
           />
           <Typography variant="h5">{product.title}</Typography>
-          <Typography>Price: {product.price} $</Typography>
+          <Chip
+            label={product.price + "" + "$"}
+            variant="filled"
+            color="success"
+            sx={{ width: "40%", marginBottom: "1%" }}
+          />
         </CardActionArea>
-        <DeleteProduct id={product.id} />
+        <DeleteProductButton id={product.id} />
         <Box
           sx={{
             display: "flex",

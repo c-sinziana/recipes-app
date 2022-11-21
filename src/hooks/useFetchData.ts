@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+
 import { BASE_URL, REQUEST_TIMEOUT } from "../constants/Configuration";
 
 axios.defaults.baseURL = BASE_URL;

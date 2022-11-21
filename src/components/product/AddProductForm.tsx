@@ -9,15 +9,17 @@ import {
   Typography,
 } from "@mui/material";
 import { AxiosRequestConfig } from "axios";
-import useFetchData from "../hooks/useFetchData";
 import { useForm } from "react-hook-form";
+
+import useFetchData from "../../hooks/useFetchData";
 import {
   requiredFieldRule,
   titleFieldRule,
   urlFieldRule,
-} from "../assets/Validations";
+} from "../../assets/Validations";
+import ToastAlert from "../ToastAlert";
 
-export default function AddProduct() {
+export default function AddProductForm() {
   const [showAlert, setShowAlert] = useState(false);
   const [customProduct, setCustomProduct] = useState<any>();
 
@@ -171,7 +173,9 @@ export default function AddProduct() {
           </Grid>
         </Container>
       </form>
-      {showAlert && <Alert>Product successfully added!</Alert>}
+      {showAlert && (
+        <ToastAlert message="Product successfully added" isTrue={true} />
+      )}
     </>
   );
 }

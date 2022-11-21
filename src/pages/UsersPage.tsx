@@ -1,17 +1,15 @@
+import React from "react";
 import {
   Box,
   Card,
-  CardMedia,
-  Grid,
   IconButton,
   Typography,
 } from "@mui/material";
 import { AxiosRequestConfig } from "axios";
-import React from "react";
-import ProfileEditModal from "./ProfileEditModal";
+
+import ProfileEditModal from "../components/user/ProfileEditModal";
 import useFetchData from "../hooks/useFetchData";
-import SingleProductPage from "../product/SingleProductPage";
-import DeleteUser from "./DeleteUser";
+import DeleteUserButton from "../components/user/DeleteUserButton";
 
 export default function UsersPage() {
   const usersRequest: AxiosRequestConfig = {
@@ -35,7 +33,7 @@ export default function UsersPage() {
           <Typography>Phone: {user.phone}</Typography>
           <Typography>City: {user.address.city}</Typography>
           <IconButton>
-            <DeleteUser id={user.id} />
+            <DeleteUserButton id={user.id} />
           </IconButton>
           <IconButton>
             <ProfileEditModal id={user.id} />

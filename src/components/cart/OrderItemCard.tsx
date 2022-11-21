@@ -2,13 +2,13 @@ import React from "react";
 import {
   Box,
   Card,
-  CardContent,
   CardMedia,
   Chip,
   Typography,
 } from "@mui/material";
 import { AxiosRequestConfig } from "axios";
-import useFetchData from "../hooks/useFetchData";
+
+import useFetchData from "../../hooks/useFetchData";
 
 type OrderItemCardProp = {
   productId: number;
@@ -36,13 +36,13 @@ export default function OrderItemCard({
         flexDirection: { sm: "row", md: "row", xs: "column" },
         marginTop: "3%",
         justifyContent: "center",
-        height: 400,
+        height: 300,
       }}
     >
       <Card
         raised
         sx={{
-          width: { xs: 200, sm: 300, md: 300 },
+          width: { xs: 200, sm: 400, md: 700 },
           alignItems: "center",
           marginTop: "2%",
         }}
@@ -51,7 +51,13 @@ export default function OrderItemCard({
           sx={{ flexDirection: { sm: "row", md: "row", xs: "column" } }}
           display="flex"
         >
-          <Box display="flex" flexDirection="column">
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
             <CardMedia
               component="img"
               image={product.image}
@@ -64,10 +70,20 @@ export default function OrderItemCard({
                 marginLeft: { xs: "5%" },
               }}
             />
+            <Chip
+              label={product.price + "" + "$"}
+              variant="filled"
+              color="success"
+              sx={{ marginTop: "2%", width: "50%" }}
+            />
+          </Box>
+          <Box
+            flexDirection="column"
+            display="flex"
+            justifyContent="center"
+            marginLeft="10%"
+          >
             <Typography>{product.title}</Typography>
-            <Box flexDirection="row" display="flex" justifyContent="center">
-              <Chip label={product.price} variant="filled" color="success" /> $
-            </Box>
           </Box>
         </Box>
       </Card>

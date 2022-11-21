@@ -1,27 +1,20 @@
-import {
-  Button,
-  Card,
-  CardMedia,
-  Grid,
-  IconButton,
-  Typography,
-} from "@mui/material";
-import { Box } from "@mui/system";
-import { AxiosRequestConfig } from "axios";
 import React from "react";
-import { useShoppingCart } from "../context/ShoppingCartContext";
-import useFetchData from "../hooks/useFetchData";
+import { Box, Button, Card, CardMedia, Chip, Typography } from "@mui/material";
+import { AxiosRequestConfig } from "axios";
 
-type CartItemProps = {
+import { useShoppingCart } from "../../context/ShoppingCartContext";
+import useFetchData from "../../hooks/useFetchData";
+
+type CartItemCardProps = {
   id: number;
   quantity: number;
 };
 
-export default function CartItem({ id, quantity }: CartItemProps) {
+export default function CartItemCard({ id, quantity }: CartItemCardProps) {
   const productRequest: AxiosRequestConfig = {
     url: `/products/${id}`,
     method: "get",
-  } 
+  };
 
   const [{ data: product, loading, error }] = useFetchData(
     productRequest,
@@ -32,6 +25,7 @@ export default function CartItem({ id, quantity }: CartItemProps) {
   const productCart = cartProducts.find((product) => product.id === id);
   if (productCart == null) return null;
   const productQuantity = getProductQuantity(product.id);
+  
   return (
     <Card>
       <Box
@@ -86,7 +80,15 @@ export default function CartItem({ id, quantity }: CartItemProps) {
           >
             {product.title}
           </Typography>
-          <Typography>Quantity: {productQuantity} </Typography>
+          <Box sx={{ display: "flex", flexDirection: "row" }}>
+            Quantity:
+            <Chip
+              label={productQuantity}
+              variant="filled"
+              color="success"
+              sx={{ width: "40%" }}
+            />
+          </Box>
         </Box>
       </Box>
     </Card>

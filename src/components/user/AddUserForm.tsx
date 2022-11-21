@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-
 import {
-  Alert,
   Box,
   Button,
   Container,
@@ -10,15 +8,13 @@ import {
   Typography,
 } from "@mui/material";
 import { AxiosRequestConfig } from "axios";
-import useFetchData from "../hooks/useFetchData";
 import { useForm } from "react-hook-form";
-import {
-  requiredFieldRule,
-  titleFieldRule,
-  urlFieldRule,
-} from "../assets/Validations";
+import useFetchData from "../../hooks/useFetchData";
 
-export default function AddUser() {
+import { requiredFieldRule } from "../../assets/Validations";
+import ToastAlert from "../ToastAlert";
+
+export default function AddUserForm() {
   const [showAlert, setShowAlert] = useState(false);
   const [customUser, setCustomUser] = useState<any>();
 
@@ -239,7 +235,11 @@ export default function AddUser() {
           </Grid>
         </Container>
       </form>
-      {showAlert && <Alert>Form submitted successfully!</Alert>}
+      <>
+        {showAlert && (
+          <ToastAlert isTrue={true} message="User successfully updated" />
+        )}
+      </>
     </>
   );
 }

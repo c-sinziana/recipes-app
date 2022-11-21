@@ -1,25 +1,28 @@
-import * as React from "react";
-import Button from "@mui/material/Button";
-import ClickAwayListener from "@mui/material/ClickAwayListener";
-import Grow from "@mui/material/Grow";
-import Paper from "@mui/material/Paper";
-import Popper from "@mui/material/Popper";
-import MenuItem from "@mui/material/MenuItem";
-import MenuList from "@mui/material/MenuList";
-import Stack from "@mui/material/Stack";
-import { AxiosRequestConfig } from "axios";
-import useFetchData from "../hooks/useFetchData";
+import React, { useState, useEffect, useRef } from "react";
+import {
+  Box,
+  Button,
+  ClickAwayListener,
+  Grow,
+  MenuItem,
+  MenuList,
+  Paper,
+  Popper,
+  Stack,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { Box } from "@mui/material";
+import { AxiosRequestConfig } from "axios";
+
+import useFetchData from "../hooks/useFetchData";
 
 export default function AllCategoriesMenu() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
-  const anchorRef = React.useRef<HTMLButtonElement>(null);
+  const anchorRef = useRef<HTMLButtonElement>(null);
   const navigate = useNavigate();
 
   const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
+    setOpen((prevOpen: any) => !prevOpen);
   };
 
   const handleClose = (event: Event | React.SyntheticEvent) => {
@@ -42,8 +45,9 @@ export default function AllCategoriesMenu() {
     }
   }
 
-  const prevOpen = React.useRef(open);
-  React.useEffect(() => {
+  const prevOpen = useRef(open);
+
+  useEffect(() => {
     if (prevOpen.current === true && open === false) {
       anchorRef.current!.focus();
     }

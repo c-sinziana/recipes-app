@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   Alert,
-  Avatar,
   Box,
   Button,
   Container,
@@ -10,8 +9,8 @@ import {
   Typography,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
-
 import { Link, useNavigate } from "react-router-dom";
+
 import { emailFieldRule, requiredFieldRule } from "../assets/Validations";
 
 export default function LoginPage() {

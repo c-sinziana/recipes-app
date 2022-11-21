@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSearchParams } from "react-router-dom";
-import { Card, CardMedia, Grid, IconButton, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { AxiosRequestConfig } from "axios";
+
 import useFetchData from "../hooks/useFetchData";
-import { BsHeartFill } from "react-icons/bs";
-import { FaShoppingCart } from "react-icons/fa";
-import DeleteProduct from "../product/DeleteProduct";
-import ProductCard from "../product/ProductCard";
+import ProductCard from "../components/product/ProductCard";
 
 export default function CategoryProducts() {
   const [searchParams] = useSearchParams();
