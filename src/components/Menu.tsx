@@ -56,17 +56,26 @@ const Menu = () => {
                 variant="contained"
                 color="error"
                 sx={{ marginBottom: "3%" }}
-                onClick={() => navigate("/carts")}
+                onClick={() => navigate("/add-product")}
               >
-                My Orders
+                Add product
               </Button>
               <Button
                 variant="contained"
                 color="error"
                 sx={{ marginBottom: "3%" }}
-                onClick={() => navigate("/add-product")}
+                onClick={() => navigate("/carts")}
               >
-                Add new product
+                My Orders
+              </Button>
+
+              <Button
+                variant="contained"
+                color="error"
+                sx={{ marginBottom: "3%" }}
+                onClick={() => navigate("/users")}
+              >
+                Users
               </Button>
               <Button
                 variant="contained"

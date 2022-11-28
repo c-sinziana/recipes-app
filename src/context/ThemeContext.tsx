@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useMemo, useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { PaletteMode } from "@mui/material";
-import { amber, deepOrange, grey } from "@mui/material/colors";
+import { amber, blueGrey, brown, deepOrange, grey } from "@mui/material/colors";
 
 export const ColorModeContext = createContext({
   toggleColorMode: () => {},
@@ -36,17 +36,19 @@ export const getDesignTokens = (mode: PaletteMode) => ({
       ? {
           primary: amber,
           divider: amber[200],
+
           text: {
             primary: grey[900],
             secondary: grey[800],
           },
         }
       : {
-          primary: deepOrange,
-          divider: deepOrange[700],
+          primary: grey,
+          divider: grey[900],
           background: {
-            default: deepOrange[900],
-            paper: deepOrange[900],
+            default: grey[900],
+            paper: grey[900],
+            card: blueGrey[900],
           },
           text: {
             primary: "#fff",

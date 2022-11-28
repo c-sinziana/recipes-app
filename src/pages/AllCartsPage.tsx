@@ -28,7 +28,6 @@ export default function AllCartsPage() {
           raised
           sx={{
             marginTop: "2%",
-            bgcolor: "lightgray",
             width: { sm: 500, md: 800, xs: 400 },
           }}
         >

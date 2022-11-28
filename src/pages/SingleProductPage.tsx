@@ -1,6 +1,15 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
-import { IconButtonProps, IconButton, Box, Card, CardMedia, Typography, Chip, CardContent } from "@mui/material";
+import {
+  IconButtonProps,
+  IconButton,
+  Box,
+  Card,
+  CardMedia,
+  Typography,
+  Chip,
+  CardContent,
+} from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { FaShoppingCart } from "react-icons/fa";
 import { AxiosRequestConfig } from "axios";
@@ -73,7 +82,7 @@ export default function SingleProductPage() {
               label={product.price + "" + "$"}
               variant="filled"
               color="success"
-              sx={{ width: "40%" }}
+              sx={{ width: "40%", justifyContent: "center", display: "flex" }}
             />
             <Box justifyContent="center" flexDirection="row" display="flex">
               <IconButton size="large" color="primary">

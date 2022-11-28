@@ -43,7 +43,6 @@ export default function ProductCard({ product }: ProductCardProps) {
         key={product.id}
         sx={{
           height: { sm: 600, md: 600, xs: 600 },
-          bgcolor: "lightgrey",
         }}
       >
         <CardActionArea onClick={() => navigate(`/product/${product.id}`)}>
@@ -63,7 +62,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             label={product.price + "" + "$"}
             variant="filled"
             color="success"
-            sx={{ width: "40%", marginBottom: "1%" }}
+            sx={{ width: "40%" }}
           />
         </CardActionArea>
         <DeleteProductButton id={product.id} />
