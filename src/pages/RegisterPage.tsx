@@ -10,8 +10,8 @@ import {
   Typography,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
-
 import { Link, useNavigate } from "react-router-dom";
+
 import {
   emailFieldRule,
   passwordFieldRule,

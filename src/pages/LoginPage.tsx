@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   Alert,
-  Avatar,
   Box,
   Button,
   Container,
@@ -10,14 +9,9 @@ import {
   Typography,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
-
 import { Link, useNavigate } from "react-router-dom";
-import {
-  emailFieldRule,
-  passwordFieldRule,
-  phoneFieldRule,
-  requiredFieldRule,
-} from "../assets/Validations";
+
+import { emailFieldRule, requiredFieldRule } from "../assets/Validations";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -25,14 +19,13 @@ export default function LoginPage() {
   const [showAlert, setShowAlert] = useState(false);
   const {
     register,
-    watch,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
   const handleFormSubmission = () => {
     setShowAlert(true);
-    navigate("/boardgames");
+    navigate("/products");
   };
 
   return (
@@ -88,7 +81,6 @@ export default function LoginPage() {
                   }
                   {...register("password", {
                     ...requiredFieldRule,
-                    ...passwordFieldRule,
                   })}
                 />
               </Grid>
